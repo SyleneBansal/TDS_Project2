@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "postinstall": "npm install && ln -s $(pwd)/node_modules/.bin/prettier /usr/local/bin/prettier"
+  }
+}
