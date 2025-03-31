@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.get('/')
 def anyname():
-    return any_json
+    return pack_json
 
 @app.post("/api/")
 async def process_question(
