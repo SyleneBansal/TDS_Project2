@@ -19,6 +19,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get('/')
+def anyname():
+    return any_json
 
 @app.post("/api/")
 async def process_question(
