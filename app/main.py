@@ -25,9 +25,12 @@ async def root():
     return {"deployed": True}
 
 
+# Handle favicon requests to prevent 500 errors
 @app.get("/favicon.ico")
+@app.get("/favicon.png")
 async def favicon():
     return Response(content="", media_type="image/x-icon")
+
 
 @app.post("/api/")
 async def process_question(
