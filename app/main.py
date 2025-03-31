@@ -4,6 +4,7 @@ import os
 from typing import Optional
 from app.utils.openai import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
+from app.utils.functions import *
 
 # Import the functions you want to test directly
 from app.utils.functions import *
