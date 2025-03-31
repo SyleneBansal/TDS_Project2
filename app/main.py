@@ -6,9 +6,9 @@ from typing import Optional
 from app.utils.openai import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
 from app.utils.functions import *
-
+import io
 # Import the functions you want to test directly
-from app.utils.functions import *
+#from app.utils.functions import *
 
 app = FastAPI(title="IITM Assignment API")
 
@@ -25,22 +25,22 @@ app.add_middleware(
 def anyname():
     return {"deployed":True}
 
+
 @app.post("/api/")
 async def process_question(
     question: str = Form(...), file: Optional[UploadFile] = File(None)
 ):
     try:
-        # Save file temporarily if provided
-        temp_file_path = None
+        temp_file = None
         if file:
-            temp_file_path = await save_upload_file_temporarily(file)
+            temp_file = io.BytesIO(await file.read())  # Store in memory instead
 
-        # Get answer from OpenAI
-        answer = await get_openai_response(question, temp_file_path)
+        answer = await get_openai_response(question, temp_file)
 
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # New endpoint for testing specific functions
