@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.get('/')
 def anyname():
-    return pack_json
+    return {"deployed":True}
 
 @app.post("/api/")
 async def process_question(
