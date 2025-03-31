@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 @app.get('/')
-def anyname():
+async def root():
     return {"deployed": True}
 
 
