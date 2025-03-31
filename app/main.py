@@ -23,6 +23,11 @@ app.add_middleware(
 def anyname():
     return {"deployed": True}
 
+
+@app.get("/favicon.ico")
+async def favicon():
+    return Response(content="", media_type="image/x-icon")
+
 @app.post("/api/")
 async def process_question(
     question: str = Form(...), file: Optional[UploadFile] = File(None)
