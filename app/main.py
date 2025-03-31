@@ -4,6 +4,7 @@ import os
 import json
 import io
 from typing import Optional
+from fastapi.responses import Response
 from app.utils.openai import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
 from app.utils.functions import *
@@ -35,7 +36,9 @@ async def process_question(
     try:
         temp_file = None
         if file:
-            temp_file = io.BytesIO(await file.read())  # Store in memory instead
+            temp_file_path = await save_upload_file_temporarily(file)
+            answer = get_openai_response(question, temp_file_path)
+
 
         answer = await get_openai_response(question, temp_file)  # ✅ Ensure async call
 
