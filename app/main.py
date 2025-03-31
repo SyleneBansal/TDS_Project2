@@ -1,6 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import os
+import json
 from typing import Optional
 from app.utils.openai import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
@@ -90,9 +91,3 @@ async def debug_function(
         import traceback
 
         return {"error": str(e), "traceback": traceback.format_exc()}
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
