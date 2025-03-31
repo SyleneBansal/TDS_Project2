@@ -1164,6 +1164,7 @@ async def get_openai_response(question: str, file_path: Optional[str] = None) ->
         "tool_choice": "auto",
     }
 
+    import httpx
     # Make the request to the AI Proxy
     async with httpx.AsyncClient() as client:
         response = await client.post(
