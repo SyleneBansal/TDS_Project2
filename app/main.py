@@ -35,7 +35,7 @@ async def process_question(
         if file:
             temp_file = io.BytesIO(await file.read())  # Store in memory instead
 
-        answer = get_openai_response(question, temp_file)
+        answer = await get_openai_response(question, temp_file)
 
         return {"answer": answer}
     except Exception as e:
@@ -62,7 +62,7 @@ async def debug_function(
         # Save file temporarily if provided
         temp_file_path = None
         if file:
-            temp_file_path = save_upload_file_temporarily(file)
+            temp_file_path = await save_upload_file_temporarily(file)
 
         # Parse parameters
         parameters = json.loads(params)
